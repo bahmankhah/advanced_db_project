@@ -1,1 +1,6 @@
-./frontend/*
+frontend/.venv
+database/.venv
+backend/vendor
+backend/.env
+backend/composer.lock
+backend/public/storage
