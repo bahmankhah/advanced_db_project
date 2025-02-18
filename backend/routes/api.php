@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\DB;
 
 Route::get('categories', [CategoryController::class, 'index']);
 
+Route::get('content-ratings', function (Request $request) {
+    $contentRatings = App::select('content_rating')
+        ->whereNotNull('content_rating')
+        ->distinct()
+        ->get()
+        ->pluck('content_rating')
+        ->toArray();
+
+    return response()->json($contentRatings);
+});
+
 Route::get('/apps', [AppController::class, 'index']);
 Route::get('/apps/{id}', [AppController::class, 'show']);
 Route::post('/apps', [AppController::class, 'store']);

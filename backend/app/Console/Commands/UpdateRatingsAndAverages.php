@@ -26,10 +26,8 @@ class UpdateRatingsAndAverages extends Command
 
     private function updateRatingsDistribution()
     {
-        // Truncate the existing table
         DB::table('ratings_distribution')->truncate();
 
-        // Recalculate distribution and insert new data
         $distribution = DB::table('apps')
             ->select('rating', DB::raw('COUNT(*) as count'))
             ->whereNotNull('rating')
@@ -48,10 +46,8 @@ class UpdateRatingsAndAverages extends Command
 
     private function updateAverageRatingsByCategory()
     {
-        // Truncate the existing table
         DB::table('average_ratings_by_category')->truncate();
 
-        // Recalculate averages and insert new data
         $averages = DB::table('apps')
             ->join('categories', 'apps.category_id', '=', 'categories.category_id')
             ->select('categories.name as category_name', DB::raw('AVG(apps.rating) as average_rating'))
