@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
 import time
-# API endpoints
+
 API_URL = "http://127.0.0.1:8000/api/apps"
 CATEGORIES_URL = "http://127.0.0.1:8000/api/categories"
 RATINGS_DISTRIBUTION_URL = "http://127.0.0.1:8000/api/ratings-distribution"
@@ -37,17 +37,14 @@ category_options = fetch_categories()
 
 content_rating_options = fetch_content_ratings()
 
-# Sidebar filters
 st.sidebar.header("Filters")
 
 selected_category = st.sidebar.selectbox("Select Category", ["All Categories"] + category_options)
 
 min_rating = st.sidebar.slider("Minimum Rating", 0.0, 5.0, 0.0)
 max_price = st.sidebar.number_input("Maximum Price", min_value=0.0, step=0.1)
-# content_rating = st.sidebar.text_input("Content Rating")
 content_rating = st.sidebar.selectbox("Select Content Rating", ["All Content Ratings"] + content_rating_options)
 
-# API parameters for filtering
 params = {
     "category": selected_category if selected_category != "All Categories" else None,
     "rating": min_rating,

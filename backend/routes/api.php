@@ -21,10 +21,10 @@ Route::get('content-ratings', function (Request $request) {
 });
 
 Route::get('/apps', [AppController::class, 'index']);
-Route::get('/apps/{id}', [AppController::class, 'show']);
+Route::get('/apps/{app}', [AppController::class, 'show']);
 Route::post('/apps', [AppController::class, 'store']);
-Route::put('/apps/{id}', [AppController::class, 'update']);
-Route::delete('/apps/{id}', [AppController::class, 'destroy']);
+Route::put('/apps/{app}', [AppController::class, 'update']);
+Route::delete('/apps/{app}', [AppController::class, 'destroy']);
 
 
 Route::get('/ratings-distribution', function (Request $request) {

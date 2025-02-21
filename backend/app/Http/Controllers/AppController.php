@@ -34,7 +34,6 @@ class AppController extends Controller
             $query->where('content_rating', $request->input('content_rating'));
         }
 
-        // Implement pagination (fetch 50 rows per page by default)
         $perPage = $request->input('per_page', 50);
         $apps = $query->paginate($perPage, ['app_id', 'app_name', 'rating', 'price', 'content_rating']);
 
@@ -74,6 +73,10 @@ class AppController extends Controller
 
         $app->update($validatedData);
 
+        return response()->json($app);
+    }
+
+    public function show(App $app){
         return response()->json($app);
     }
 
